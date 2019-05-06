@@ -1,0 +1,118 @@
+你们公司的代码版本控制工具是什么？Git还是SVN?
+
+目前在互联网公司最使用最广和流行的应该是git，如果你从事编程工作，这个工具绝对是你的必备技能，本文简单介绍一下git的简单使用和github的关联。
+
+Git 是一个免费开源的分布式版本控制系统，它是linux系统发明者Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。
+
+Git的一个重要宗旨是鼓励大家都参与，基本上任何人都可以提出变更申请（github：Pull request，gitlab：Merge request），但只有少数负责人（owner和开发组），从而合并变更。
+
+安装git
+
+下载地址：https://git-scm.com/downloads
+
+下载Windows版本，安装到电脑即可。（笔者测试机为 win7）
+
+1.打开 Git Bash，输入如下命令，回车：
+ssh-keygen -t rsa -C "your_email@example.com"  
+
+注意：your_email@example.com 要替换为你的GitHub注册邮箱地址
+
+2.将SSH私钥添加到 ssh-agent
+继续在Git Bash中执行以下步骤：
+
+1）在后台启动 ssh-agent
+eval $(ssh-agent -s)
+
+2）将SSH公钥添加到GitHub账户
+ssh-add /c/Users/Lcc/.ssh/id_rsa
+
+3）将SSH公钥添加到GitHub账户
+
+复制SSH公钥：/C/Users/Lcc/.ssh/id_rsa.pub这个文件的完整内容 （可以在Git Bash 中通过 vi C/Users/Lcc/.ssh/id_rsa.pub 打开文件复制）
+
+登陆GitHub账号，找到Settings 
+找到左侧栏SSH and GPG keys后点击Add 
+起个名字，把之前复制的内容粘贴进来 
+测试：打开 Git Bash 输入：
+ssh -T git@github.com 然后输入yes，回车。 如果提示中显示了你的用户名，说明SSH key已经配置成功。
+
+Hi ruink! You've successfully authenticated, but GitHub does not provide shell access.
+
+如果报错提示：Warning: Permanently added 'github.com,13.229.188.59' (RSA) to the list of known hosts.
+解决办法：在目录 C:\Windows\System32\drivers\etc 下 hosts 文件加入以下行保存即可：
+13.229.188.59 github.com
+
+6. 设置用户信息：
+
+$ git config --global user.name "defnngj"//给自己起个用户名
+$ git config --global user.email  "defnngj@gmail.com"//填写自己的邮箱
+
+
+
+
+Git 工作流程
+
+克隆远程资源到本地目录
+本地仓库添加或修改文件
+使用git add 添加修改的文件暂存到缓冲区
+在添加之后，可以使用git commit添加到当前的工作区
+git push将本地的修改推送到远程的git服务器
+
+Git基本操作
+
+进入/AAA目录,建立仓库
+
+git init
+
+文件123.txt放到/AAA目录，添加文件到仓库
+
+git add 123.txt
+
+告诉git，把文件提交到仓库
+
+git commit -m "add a file"
+
+仓库状态，比如文件的修改未提交等
+
+git status
+
+查看修改的差异
+
+git diff
+
+查看提交日志
+
+git log
+
+回退到上一版本
+
+git reset --hard HEAD^
+
+删除文件
+
+git rm test.txt
+
+从远程服务器（github）克隆到本地
+
+git clone git@github.com:xxxx/test.git
+
+把本地的代码提交到服务器 (github)
+
+git push origin master
+
+使用git 将项目上传到GitHub上，先在https://github.com 这里注册一个账号。
+
+没有仓库的话，先新创建一个仓库。
+
+创建SSH Key，并将公钥粘贴到打开“Account settings”--“SSH Keys”页面。
+
+
+
+
+
+
+
+
+
+
+关联好后，你就可以将自己的本地代码提交到远程服务器了。
